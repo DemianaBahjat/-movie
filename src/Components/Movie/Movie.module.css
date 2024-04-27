@@ -1,0 +1,18 @@
+.movie:hover{
+    cursor: pointer;
+    box-shadow: -4px -3px 45px 21px rgba(0,0,0,0.35);
+    transform: scale(.9)
+
+}
+
+  
+  .favoriteIcon {
+    font-size: 30px; 
+    color: #f39c12; 
+    cursor: pointer;
+  }
+  
+  .favoriteIcon:hover {
+    color: #e67e22; 
+  }
+  
