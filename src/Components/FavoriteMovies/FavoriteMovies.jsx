@@ -2,8 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 export default function FavoriteMovies() {
-  const favoriteMovies = useSelector(state => state.favoriteMovies.movies);
 
+  const favoriteMovies = useSelector(state => state.favoriteMovies.movies);
+  
   return (
     <div>
       <h2>Favorite Movies</h2>

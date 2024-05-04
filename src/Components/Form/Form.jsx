@@ -3,13 +3,15 @@ import './Form.css'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import Spinner from 'react-bootstrap/Spinner';
+import { useNavigate } from 'react-router-dom';
 export default function Form() {
 
     const [ErrorMessage, setErrorMsg]= useState(false)
     const [islogin , setIsLogin] =useState('')
     const [isLoading, setIsLoading]= useState(false)
     const [showPassword, setShowPassword] = useState(false);
-
+    const navigate= useNavigate()
+    
     const toggleShowPassword = () => {
       setShowPassword(!showPassword);
     }
@@ -26,8 +28,11 @@ export default function Form() {
 
     },
      validationSchema,
+
      onSubmit:(()=>{
+
        setIsLogin('you are logged in')
+       navigate('/home')
      })
     })
 

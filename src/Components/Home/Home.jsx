@@ -3,25 +3,39 @@ import axiosInstance from '../../AxioxConfig/AxiosInstance'
 import Movie from '../Movie/Movie'
 import { Link } from 'react-router-dom'
 import Spinner from 'react-bootstrap/Spinner';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllMovies } from '../../Redux/MovieSlice';
+import useFetch from '../../Hooks/useFetch';
 
 
 export default function Home() {
-    const [movies, setMovies] = useState([])
-    const [isLoading , setIsLoading]= useState(false)
-  async function getMovies (){
-      setIsLoading(true)
-      const response= await axiosInstance.get('/popular')
-      console.log(response.data)
-      setMovies(response.data.results)
-      setIsLoading(false)
-    }
 
-    useEffect(()=>{
-         getMovies()
-    },[])
+     
+     // custom hook
+     //  const {data :movies, isError , isLoading}=useFetch('/popular')
+
+      const isLoading  =useSelector((state)=>state.movies.isLoading)
+      const isError  =useSelector((state)=>state.movies.isError)
+      const movies = useSelector((state)=>state.movies.value)
+      const dispatch  = useDispatch()
+
+    
+      
+   async function getMovies (){
+       dispatch( getAllMovies())
+
+     }
+     useEffect(()=>{
+          getMovies()
+     },[])  
+
+
   return (
     <>
-       {isLoading?
+       {isError? <div className='alert alert-danger'> Error fetching data!</div>
+       :
+       <>
+           {isLoading?
               <div className="d-flex justify-content-center align-items-center m-5 min-vh-100">
                 <Spinner animation="border" role="status" >
                      <span className="visually-hidden">Loading...</span>
@@ -32,15 +46,17 @@ export default function Home() {
        <div className='row'>
        {movies.map((movie)=>
             <div className='col-md-3' key={movie.id}>
-                     <Movie movie={movie}/>
+
+                     < Movie movie={movie} />
               
             </div>
       )}
        </div>
-
     </div>
        
        }
     </>
+       }
+      </>
   )
 }
