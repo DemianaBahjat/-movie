@@ -34,7 +34,7 @@ export default function Navbar() {
    const favoriteMoviesCount = useSelector(state => state.favoriteMovies.movies.length)
    return (
      <>
-          <nav className="navbar navbar-expand-lg navbar-dark mb-5" style={{backgroundColor:"gray"}} >
+          <nav className="navbar navbar-expand-lg navbar-info mb-5" style={{backgroundColor:"gray"}} >
            <Link className="navbar-brand" href="#">Movies</Link>
            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
