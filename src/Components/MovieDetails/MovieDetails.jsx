@@ -9,11 +9,10 @@ import { getMovieByID } from '../../Redux/MovieSlice';
 export default function MovieDetails() {
 
      const {id}=useParams()
-
     //custom hook
     // const {data:moviesDetails, isLoading, isError}=useFetch(`/popular/${id}`)
 
-    const moviesDetails= useSelector((state)=> state.movies.value)
+    const moviesDetails= useSelector((state)=> state.movies.value2)
     const isLoading= useSelector((state)=> state.movies.isLoading)
     const isError =useSelector((state)=> state.movies.isError)
     const dispatch= useDispatch()
@@ -27,13 +26,9 @@ export default function MovieDetails() {
   
   useEffect(() => {
     dispatch(getMovieByID(id));
-}, [dispatch, id]);
+}, [id])
   
-useEffect(() => {
-  if (isError) {
-      console.error("Error fetching data!");
-  }
-}, [isError]);
+
     // async function getMoviesDetails (){
     //   dispatch( getMovieByID(id))
 

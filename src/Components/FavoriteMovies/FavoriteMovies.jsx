@@ -7,10 +7,9 @@ export default function FavoriteMovies() {
   
   return (
     <div>
-      <h2>Favorite Movies</h2>
-      <div className='container d-flex'>
+      <div className='container d-flex mb-5 mt-0 w-75'>
         {favoriteMovies.map(movie => (
-          <div key={movie.id} className='w-75'>
+          <div key={movie.id} >
              <img src={"https://image.tmdb.org/t/p/w500"+movie.poster_path} className='w-100  p-2' />
              <h5> {movie.title}</h5>
             </div>

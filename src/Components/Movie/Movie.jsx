@@ -27,7 +27,7 @@ export default function Movie({ movie ,selectedCurrency}) {
         GBP: 0.73,
       };
     
-      const defaultPrice = 10; 
+      const defaultPrice = 20; 
     
       const currencyMultiplier = currencies[selectedCurrency] || 1; 
       const priceInSelectedCurrency = priceInUSD || defaultPrice; 
@@ -43,13 +43,14 @@ export default function Movie({ movie ,selectedCurrency}) {
         <div className='m-3'>
           <h3>{movie.title}</h3>
           <p>{movie.overview.split(" ").slice(0,15).join(" ")}</p>
-          <p>Price: {calculateMoviePrice(movie.price, selectedCurrency)} {selectedCurrency}</p>
           
         </div>
       </Link>
-
+     
      <div className='d-flex justify-content-center align-items-center'>
            <div>
+           <p>Price: {calculateMoviePrice(movie.price, selectedCurrency)} {selectedCurrency}</p>
+
             <button onClick={handleToggleFavorite} className={`btn btn-secondary m-2 `}>
                  {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
              </button>

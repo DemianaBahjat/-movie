@@ -15,8 +15,8 @@ import axiosInstance from '../../src/AxioxConfig/AxiosInstance'
 
  export const getMovieByID = createAsyncThunk('movies/getMovieByID', async (id, thunkAPI) => {
   try {
-      const response = await axiosInstance.get(`/popular/${id}`);
-      return response.data.results;
+      const response = await axiosInstance.get(`/${id}`);
+      return response.data
   } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
   }
@@ -27,6 +27,7 @@ import axiosInstance from '../../src/AxioxConfig/AxiosInstance'
         name:'movies',
         initialState:{
             value:[],
+            value2:[],
             isLoading:false,
             isError:false
         },
@@ -44,7 +45,7 @@ import axiosInstance from '../../src/AxioxConfig/AxiosInstance'
             state.value= action.payload
         })
 
-        build.addCase(getAllMovies.rejected, (state, action)=>{
+        build.addCase(getAllMovies.rejected, (state)=>{
           state.isError=true
       }) 
        
@@ -56,7 +57,7 @@ import axiosInstance from '../../src/AxioxConfig/AxiosInstance'
        build.addCase(getMovieByID.fulfilled, (state, action)=>{
                state.isError=false
                state.isLoading=false
-               state.value= action.payload
+               state.value2= action.payload
        })
 
        build.addCase(getMovieByID.rejected, (state, action)=>{
