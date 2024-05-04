@@ -49,8 +49,10 @@ export default function Movie({ movie ,selectedCurrency}) {
      
      <div className='d-flex justify-content-center align-items-center'>
            <div>
-           <p>Price: {calculateMoviePrice(movie.price, selectedCurrency)} {selectedCurrency}</p>
-
+           <p>
+             Price: {calculateMoviePrice(movie.price, selectedCurrency)}{' '}
+             {selectedCurrency === 'USD' ? '$' : selectedCurrency}
+          </p>
             <button onClick={handleToggleFavorite} className={`btn btn-secondary m-2 `}>
                  {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
              </button>

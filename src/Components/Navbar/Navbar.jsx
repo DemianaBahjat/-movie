@@ -10,7 +10,7 @@ export default function Navbar() {
   const {isLoggedin, setIsLoggedIn}= useContext(authContext)
   const navigate = useNavigate()
 
-
+ 
   const [selectedCurrency, setSelectedCurrency] = useState('USD');
 
   const currencies = {
@@ -56,18 +56,21 @@ export default function Navbar() {
         </li>
         
     </ul>
-        
+    <CurrencyDropdown
+                 currencies={currencies}
+                 selectedCurrency={selectedCurrency}
+                 handleChangeCurrency={handleChangeCurrency}
+              />
   </div>
-      <CurrencyDropdown
-           currencies={currencies}
-           selectedCurrency={selectedCurrency}
-           handleChangeCurrency={handleChangeCurrency}
-      />
+     
        {isLoggedin?
-  
+  <>
              <div className="nav-item d-flex justify-content-end align-items-center ">
                 <Link className="nav-link mx-5 " to="/form" onClick={logOut}>logOut</Link>
             </div>
+
+      
+</>
        :
 
             <div className="nav-item d-flex justify-content-end align-items-center ">
